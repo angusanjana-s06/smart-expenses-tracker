@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Track expenses, understand spending, and manage personal finances with Smart Expense Tracker.">
+  <title>Smart Expense Tracker</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="app">
+    <header class="page-header">
+      <div class="header-copy">
+        <p class="eyebrow">PERSONAL FINANCE</p>
+        <h1>Expense tracker</h1>
+        <p class="subtitle">A clearer picture of your everyday spending.</p>
+      </div>
+      <div class="header-mark" aria-hidden="true">
+        <span class="header-mark-icon">$</span>
+        <span>Spend with intention</span>
+      </div>
+    </header>
+
+    <section class="panel entry-panel" aria-labelledby="entry-heading">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">NEW RECORD</p>
+          <h2 id="entry-heading">Add an expense</h2>
+        </div>
+      </div>
+
+      <form id="expense-form">
+        <div class="form-grid">
+          <label class="field field-wide" for="expense-name">
+            <span>Expense name</span>
+            <input
+              id="expense-name"
+              name="name"
+              type="text"
+              placeholder="e.g. Weekly groceries"
+              maxlength="80"
+              required
+            >
+          </label>
+
+          <label class="field" for="expense-amount">
+            <span>Amount</span>
+            <input
+              id="expense-amount"
+              name="amount"
+              type="number"
+              placeholder="0.00"
+              min="0.01"
+              step="0.01"
+              required
+            >
+          </label>
+
+          <label class="field" for="expense-category">
+            <span>Category</span>
+            <select id="expense-category" name="category" required>
+              <option value="" disabled selected>Select a category</option>
+              <option value="Food">Food</option>
+              <option value="Transport">Transport</option>
+              <option value="Housing">Housing</option>
+              <option value="Shopping">Shopping</option>
+              <option value="Bills">Bills</option>
+              <option value="Health">Health</option>
+              <option value="Entertainment">Entertainment</option>
+              <option value="Other">Other</option>
+            </select>
+          </label>
+
+          <label class="field" for="expense-date">
+            <span>Date</span>
+            <input id="expense-date" name="date" type="date" required>
+          </label>
+        </div>
+
+        <div class="form-actions">
+          <button class="add-button" type="submit">
+            <span id="submit-icon" aria-hidden="true">+</span>
+            <span id="submit-label">Add expense</span>
+          </button>
+          <button id="cancel-edit-button" class="cancel-button" type="button" hidden>
+            Cancel edit
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <section class="dashboard-grid" aria-label="Expense summary">
+      <div class="panel statistics-panel">
+        <div class="section-heading">
+          <p class="eyebrow">OVERVIEW</p>
+          <h2>Dashboard</h2>
+        </div>
+        <div class="statistics-grid" aria-live="polite">
+          <div class="stat-card">
+            <span>Total expenses</span>
+            <strong id="dashboard-total">0.00</strong>
+          </div>
+          <div class="stat-card">
+            <span>Number of expenses</span>
+            <strong id="expense-count">0</strong>
+          </div>
+          <div class="stat-card">
+            <span>Highest expense</span>
+            <strong id="highest-expense">0.00</strong>
+          </div>
+          <div class="stat-card">
+            <span>Average expense</span>
+            <strong id="average-expense">0.00</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel category-panel">
+        <div class="section-heading">
+          <p class="eyebrow">BY CATEGORY</p>
+          <h2>Category spending</h2>
+        </div>
+        <ul id="category-summary" class="category-summary" aria-live="polite">
+          <li>No expenses to summarize yet.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="panel records-panel" aria-labelledby="records-heading">
+      <div class="records-header">
+        <div>
+          <p class="eyebrow">YOUR ACTIVITY</p>
+          <h2 id="records-heading">Expense records</h2>
+        </div>
+        <div class="total-card" aria-live="polite">
+          <span class="total-label">Total spent</span>
+          <strong id="expense-total">0.00</strong>
+        </div>
+      </div>
+
+      <div class="expense-filters">
+        <label class="filter-field" for="expense-search">
+          <span>Search expenses</span>
+          <input id="expense-search" type="search" placeholder="Search by name">
+        </label>
+        <label class="filter-field" for="category-filter">
+          <span>Filter by category</span>
+          <select id="category-filter">
+            <option value="">All categories</option>
+            <option value="Food">Food</option>
+            <option value="Transport">Transport</option>
+            <option value="Housing">Housing</option>
+            <option value="Shopping">Shopping</option>
+            <option value="Bills">Bills</option>
+            <option value="Health">Health</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Other">Other</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="records-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Expense</th>
+              <th scope="col">Category</th>
+              <th scope="col">Date</th>
+              <th class="amount-column" scope="col">Amount</th>
+              <th class="actions-column" scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="expense-list">
+            <tr class="empty-row">
+              <td colspan="5">No expenses yet. Add your first record above.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <p class="page-note">Your records are saved in the backend database.</p>
+  </main>
+</body>
+</html>
